@@ -1,0 +1,1 @@
+C:37:"PHPUnit\Runner\DefaultTestResultCache":246:{a:2:{s:7:"defects";a:2:{s:38:"Tests\Browser\CRUDTest::testUpdateTent";i:3;s:35:"Tests\Browser\CRUDTest::testAddTent";i:3;}s:5:"times";a:2:{s:38:"Tests\Browser\CRUDTest::testUpdateTent";d:0.933;s:35:"Tests\Browser\CRUDTest::testAddTent";d:1.871;}}}

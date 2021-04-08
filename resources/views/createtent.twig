@@ -1,0 +1,106 @@
+{% extends 'general.twig' %}
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  {% if tent %}
+  <form method="POST" id="update-tent" enctype="multipart/form-data">
+  {% else %}
+  <form method="POST" id="create-tent" enctype="multipart/form-data">
+  {% endif %}
+    {{ csrf_field() }}
+    <div class="form-group">
+      <label for="name">Название</label>
+      <input type="text" class="form-control" name="Name" id="inputName" placeholder="10" value="{{ tent.Name }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="typeSelect">Тип</label>
+      <select class="form-control" name="PK_TentType" id="controlTypeSelect"">
+        {% for tentType in tentTypes %}
+          {% if tent.tentType.PK_TentType == tentType.PK_TentType %}
+            <option value="{{ tentType.PK_TentType }}" selected>{{ tentType.Name }}</option>
+          {% else %}
+            <option value="{{ tentType.PK_TentType }}">{{ tentType.Name }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="typeSelect">Производитель</label>
+      <select class="form-control" name="PK_Manufacturer" id="controlManufacturerSelect" selected="{{ tent.manufacturer.PK_Manufacturer }}">
+        {% for manufacturer in manufacturers %}
+          {% if tent.manufacturer.PK_Manufacturer == manufacturer.PK_Manufacturer %}
+            <option value="{{ manufacturer.PK_Manufacturer }}" selected>{{ manufacturer.Name }}</option>
+          {% else %}
+            <option value="{{ manufacturer.PK_Manufacturer }}">{{ manufacturer.Name }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="BerthsNumber">Число спальных мест</label>
+      <input type="text" class="form-control" name="BerthsNumber" id="inputBerthsNumber" placeholder="10" value="{{ tent.BerthsNumber }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="MaximizedDimensions">Габариты в разложенном виде</label>
+      <input type="text" class="form-control" name="MaximizedDimensions" id="inputMaximizedDimensions" placeholder="345х250х135 (в см)" value="{{ tent.MaximizedDimensions }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="MinimizedDimensions">Габариты в свернутом виде</label>
+      <input type="text" class="form-control" name="MinimizedDimensions" id="inputMinimizedDimensions" placeholder="65х17х17 (в см)" value="{{ tent.MinimizedDimensions }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="MinTemperature">Минимальная температура</label>
+      <input type="text" class="form-control" name="MinTemperature" id="inputMinTemp" placeholder="-10 (в ℃)" value="{{ tent.MinTemperature }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="MaxTemperature">Максимальная температура</label>
+      <input type="text" class="form-control" name="MaxTemperature" id="inputMaxTemp" placeholder="20 (в ℃)" value="{{ tent.MaxTemperature }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="Weight">Вес</label>
+      <input type="text" class="form-control" name="Weight" id="inputWeight" placeholder="10.6 (в кг)" value="{{ tent.Weight }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="Description">Описание</label>
+      <textarea class="form-control" name="Description" id="controlDescriptionTextArea" rows="5" maxlength="250" required>{{ tent.Description }}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="ShortDescription">Краткое описание</label>
+      <textarea class="form-control" name="ShortDescription" id="controlShortDescriptionTextArea" rows="2" maxlength="100" required>{{ tent.ShortDescription }}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="Amount">Количество</label>
+      <input type="text" class="form-control" name="Amount" id="inputAmount" placeholder="120 (в шт.)" value="{{ tent.Amount }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="Price">Цена</label>
+      <input type="text" class="form-control" name="Price" id="inputPrice" placeholder="16000 (в р.)" value="{{ tent.Price }}" required>
+    </div>
+
+
+    <div class="form-group">
+      <label for="image">Фотография палатки</label>
+      <input type="file" class="form-control-file" name="image" id="inputTentImage" value="{{ tent.ImgPath }}">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Подтвердить изменения</button>
+  </form>
+</div>
+
+{% endblock %}

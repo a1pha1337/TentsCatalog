@@ -1,0 +1,38 @@
+{% extends 'general.twig' %}
+{% block title %}
+    Палатка {{tent.Name}}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="card mt-1">
+                <img src="/storage/{{tent.ImgPath}}" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h3 class="card-title">Палатка {{tent.Name}}</h3>
+                    <h4>Описание: </h4>
+                    <p class="card-text">{{tent.Description}}</p>
+                    <h4>Параметры: </h4>
+                    
+                    <ul>
+                        <li>Производитель: {{tent.manufacturer.Name}}</li>
+                        <li>Тип: {{tent.tentType.Name}}</li>
+                        <li>Количество мест: {{tent.BerthsNumber}}</li>
+                        <li>Габариты в разложенном виде: {{tent.MaximizedDimensions}} см</li>
+                        <li>Габариты в свернутом виде: {{tent.MinimizedDimensions}} см</li>
+                        <li>Диапазон температур: от {{tent.MinTemperature}} до {{tent.MaxTemperature}} ℃</li>
+                        <li>Вес: {{tent.Weight}} кг</li>
+                    </ul>
+
+                    <p>Цена: {{tent.Price}} руб.</p>
+                    <p>В наличии {{tent.Amount}} шт.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

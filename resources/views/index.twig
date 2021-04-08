@@ -1,0 +1,88 @@
+{% extends 'general.twig' %}
+{% block title %}
+    Главная
+{% endblock %}
+
+{% block content %}
+
+    <div class="album py-5 bg-white">
+        <div class="container">
+
+            <div class="row">
+                {% for tent in tents %}
+                    <div class="col-md-4" id="car_{{ tent.PK_Tent }}">
+                        <div class="card mb-4 box-shadow">
+                            <a href="/viewtent/{{tent.PK_Tent}}"><img src="/storage/{{tent.ImgPath}}" class="card-img-top"></a>
+                            <div class="card-body">
+                                <p class="card-title h5 name">{{tent.Name}}</p>
+                                <p class="card-text">{{tent.ShortDescription}}</p>
+
+                                <ul>
+                                    <li>Количество мест: <a class="berthsNumber">{{tent.BerthsNumber}}</a></li>
+                                    <li>Габариты в разложенном виде: <a class="maximizedDimensions">{{tent.MaximizedDimensions}}</a> см</li>
+                                    <li>Габариты в свернутом виде: <a class="minimizedDimensions">{{tent.MinimizedDimensions}}</a> см</li>
+                                    <li>Диапазон температур: от <a class="minTemperature">{{tent.MinTemperature}}</a> до <a class="maxTemperature">{{tent.MaxTemperature}}</a> ℃</li>
+                                    <li>Вес: <a class="weight">{{tent.Weight}}</a> кг</li>
+                                </ul>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <!-- <a href="/showtent/{{tent.PK_Tent}}" class="btn btn-primary edit">Просмотр</a> -->
+
+                                        <button class="btn btn-primary edit details"
+                                                data-id="{{ tent.PK_Tent }}"
+                                                data-toggle="modal" 
+                                                data-target="#modal-form">Детали</button>
+
+                                        {% if user.is_admin %}
+                                            <form method="GET" action="/createtent/{{tent.PK_Tent}}">
+                                                <button type="submit" class="btn btn-warning edit">Редактировать</button>
+                                            </form>
+
+                                            <form method="GET" action="/deletetent/{{tent.PK_Tent}}">
+                                                <button type="submit" class="btn btn-danger edit">Удалить</button>
+                                            </form>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-form" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Детали</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">✕</button>
+                </div>
+                <div class="modal-body">
+                    <label for="name"><strong>Название:</strong></label>
+                    <p id="name" class="py-1"></p>
+
+                    <label for="type"><strong>Тип:</strong></label>
+                    <p id="type" class="py-1"></p>
+
+                    <label for="maximizedDimensions"><strong>Габариты в разложенном виде:</strong></label>
+                    <p id="maximizedDimensions" class="py-1"></p>
+
+                    <label for="minimizedDimensions"><strong>Габариты в свернутом виде:</strong></label>
+                    <p id="minimizedDimensions" class="py-1"></p>
+
+                    <label for="price"><strong>Цена:</strong></label>
+                    <p id="price" class="py-1"></p>
+
+                    <label for="description"><strong>Описание:</strong></label>
+                    <p id="description" class="py-1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock %}
