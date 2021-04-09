@@ -24,7 +24,7 @@ class Admin
             switch ($request->method())
             {
                 case 'POST':
-                    response()->json([
+                    return response()->json([
                         'message' => 'Доступ запрещен!',
                     ], 403);
 
@@ -36,7 +36,7 @@ class Admin
                     break;
 
                 default:
-                    response()->json([
+                    return response()->json([
                         'message' => 'Лол)',
                     ], 404);
 
