@@ -14,7 +14,7 @@ class CreateTentsTable extends Migration
     public function up()
     {
         Schema::create('tents', function (Blueprint $table) {
-            $table->increments('PK_Tent');
+            $table->bigIncrements('PK_Tent');
             $table->float('Price', 8, 2);
             $table->string('Name', 100);
             $table->integer('BerthsNumber');
