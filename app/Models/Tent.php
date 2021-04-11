@@ -12,7 +12,7 @@ class Tent extends Model
 {
     use HasFactory;
 
-    protected $table = 'tent';
+    protected $table = 'tents';
     
     protected $primaryKey = 'PK_Tent';
 

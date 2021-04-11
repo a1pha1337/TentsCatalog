@@ -9,7 +9,7 @@ class TentType extends Model
 {
     use HasFactory;
 
-    protected $table = 'tenttype';
+    protected $table = 'tent_types';
 
     protected $primaryKey = 'PK_TentType';
 

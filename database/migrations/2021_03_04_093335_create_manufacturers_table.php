@@ -14,8 +14,8 @@ class CreateManufacturersTable extends Migration
     public function up()
     {
         Schema::create('manufacturers', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('PK_Manufacturer');
+            $table->string('Name', 150);
         });
     }
 

@@ -9,7 +9,7 @@ class Manufacturer extends Model
 {
     use HasFactory;
 
-    protected $table = 'manufacturer';
+    protected $table = 'manufacturers';
 
     protected $primaryKey = 'PK_Manufacturer';
 

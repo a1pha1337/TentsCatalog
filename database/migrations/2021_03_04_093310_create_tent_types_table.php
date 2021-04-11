@@ -14,8 +14,8 @@ class CreateTentTypesTable extends Migration
     public function up()
     {
         Schema::create('tent_types', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('PK_TentType');
+            $table->string('Name', 100);
         });
     }
 
